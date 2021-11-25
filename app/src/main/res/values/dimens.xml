@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_default_elevation">4dp</dimen>
+    <dimen name="list_header_height">40dp</dimen>
+    <dimen name="list_column_rate_width">96dp</dimen>
+    <dimen name="list_item_rate_height">56dp</dimen>
+    <dimen name="list_item_vertical_padding_default">8dp</dimen>
+    <dimen name="list_default_margin">12dp</dimen>
+</resources>

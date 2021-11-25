@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_rate_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="@dimen/list_item_vertical_padding_default">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvRateLast"
+        android:layout_width="@dimen/list_column_rate_width"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="1,9231"
+        style="@style/TextView.Rate"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvRateFirst"
+        android:layout_width="@dimen/list_column_rate_width"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/tvRateLast"
+        tools:text="1,9231"
+        style="@style/TextView.Rate"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCurrencyShortName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvRateFirst"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvCurrencyFullName"
+        tools:text="USD"
+        style="@style/TextView.CurrencyShortName"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCurrencyFullName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvRateFirst"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrencyShortName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="1 доллар США"
+        style="@style/TextView.CurrencyFullName"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

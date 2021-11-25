@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">CurrencyRates</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="common_currencies_settings">Настройка валют</string>
+
+    <!--  Screens  -->
+    <!--    Rates  -->
+    <string name="screen_rates_title">Курсы валют</string>
+    <string name="screen_rates_loading_error">Не удалось получить курсы валют</string>
+    <!--    Settings  -->
+    <string name="screen_settings_title">@string/common_currencies_settings</string>
+
+    <!--  Menus  -->
+    <string name="currencies_settings">@string/common_currencies_settings</string>
 </resources>

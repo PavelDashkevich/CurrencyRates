@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentRates">
+
+    <fragment
+        android:id="@+id/fragmentRates"
+        android:name="by.dashkevichpavel.currencyrates.features.rates.FragmentRates"
+        android:label="@string/screen_rates_title"
+        tools:layout="@layout/fragment_rates">
+
+        <action
+            android:id="@+id/action_fragmentRates_to_fragmentSettings"
+            app:destination="@id/fragmentSettings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="by.dashkevichpavel.currencyrates.features.settings.FragmentSettings"
+        android:label="@string/screen_settings_title"
+        tools:layout="@layout/fragment_rates">
+
+    </fragment>
+</navigation>

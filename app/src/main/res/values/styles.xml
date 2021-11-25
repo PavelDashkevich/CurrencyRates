@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:elevation">@dimen/toolbar_default_elevation</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+    </style>
+    <style name="TextView.ListHeader" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
+    <style name="TextView.Rate" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextView.CurrencyShortName" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextView.CurrencyFullName" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+</resources>
