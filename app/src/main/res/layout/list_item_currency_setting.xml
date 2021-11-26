@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_rate_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="@dimen/list_item_vertical_padding_default"
+    android:background="?attr/colorSurface">
+
+    <View
+        android:id="@+id/vHelperFirst"
+        android:layout_width="@dimen/list_column_rate_width"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/vHelperLast"/>
+
+    <View
+        android:id="@+id/vHelperLast"
+        android:layout_width="@dimen/list_column_rate_width"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iDrag"
+        android:layout_width="@dimen/clickable_control_size_default"
+        android:layout_height="@dimen/clickable_control_size_default"
+        app:layout_constraintTop_toTopOf="@id/vHelperLast"
+        app:layout_constraintBottom_toBottomOf="@id/vHelperLast"
+        app:layout_constraintStart_toStartOf="@id/vHelperLast"
+        app:layout_constraintEnd_toEndOf="@id/vHelperLast"
+        android:src="@drawable/ic_baseline_drag_handle_24"
+        android:scaleType="center"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/swShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/vHelperFirst"
+        app:layout_constraintBottom_toBottomOf="@id/vHelperFirst"
+        app:layout_constraintStart_toStartOf="@id/vHelperFirst"
+        app:layout_constraintEnd_toEndOf="@id/vHelperFirst"
+        android:gravity="center"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCurrencyShortName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vHelperFirst"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvCurrencyFullName"
+        tools:text="USD"
+        style="@style/TextView.CurrencyShortName"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCurrencyFullName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vHelperFirst"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrencyShortName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="1 доллар США"
+        style="@style/TextView.CurrencyFullName"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

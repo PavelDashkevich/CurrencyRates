@@ -7,7 +7,7 @@ data class Currency(
     val code: String,
     val abbreviation: String,
     val quotName: String,
-    val order: Int = 0,
-    val show: Boolean = false,
+    var order: Int = 0,
+    var show: Boolean = false,
     val dateEnd: Date = Date()
 )

@@ -1,4 +1,4 @@
-package by.dashkevichpavel.currencyrates.features.rates
+package by.dashkevichpavel.currencyrates.utils
 
 sealed class OperationResult<T>(val value: T?) {
     class Success<T>(value: T?) : OperationResult<T>(value)

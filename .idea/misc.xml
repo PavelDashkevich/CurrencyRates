@@ -6,8 +6,10 @@
         <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
         <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/layout/fragment_rates.xml" value="0.27219202898550726" />
         <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/layout/fragment_settings.xml" value="0.27219202898550726" />
+        <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/layout/list_item_currency_setting.xml" value="0.23278985507246377" />
         <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/layout/list_item_rate.xml" value="0.27219202898550726" />
         <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/menu/rates_options_menu.xml" value="0.3578125" />
+        <entry key="..\:/AndroidDev/Projects/Test tasks/CurrencyRates/app/src/main/res/menu/settings_options_menu.xml" value="0.328125" />
       </map>
     </option>
   </component>

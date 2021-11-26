@@ -5,11 +5,11 @@ import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.dashkevichpavel.currencyrates.CurrencyRatesViewModelFactory
 import by.dashkevichpavel.currencyrates.R
 import by.dashkevichpavel.currencyrates.databinding.FragmentRatesBinding
+import by.dashkevichpavel.currencyrates.utils.extensions.safelyNavigateTo
 import by.dashkevichpavel.currencyrates.utils.extensions.setupToolbar
 import by.dashkevichpavel.currencyrates.utils.formatters.FormatUtil
 import com.google.android.material.snackbar.Snackbar
@@ -42,7 +42,8 @@ class FragmentRates : Fragment(R.layout.fragment_rates) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> requireActivity().onBackPressed()
-            R.id.mi_currencies_settings -> {}
+            R.id.mi_currencies_settings ->
+                safelyNavigateTo(R.id.action_fragmentRates_to_fragmentSettings)
             else -> return super.onOptionsItemSelected(item)
         }
 
@@ -73,17 +74,17 @@ class FragmentRates : Fragment(R.layout.fragment_rates) {
         }
     }
 
-    private fun onChangeState(state: RatesViewModelState) {
+    private fun onChangeState(state: RatesUiState) {
         when (state) {
-            RatesViewModelState.Start -> updateUi(
+            RatesUiState.Start -> updateUi(
                 showProgressBar = false,
                 showSettingsButton = false
             )
-            RatesViewModelState.Loading -> updateUi(
+            RatesUiState.Loading -> updateUi(
                 showProgressBar = true,
                 showSettingsButton = false
             )
-            RatesViewModelState.LoadingError -> {
+            RatesUiState.LoadingError -> {
                 updateUi(showProgressBar = false, showSettingsButton = false)
                 Snackbar
                     .make(
@@ -94,11 +95,11 @@ class FragmentRates : Fragment(R.layout.fragment_rates) {
                     .show()
                 viewModel.errorHasShown()
             }
-            RatesViewModelState.Ready -> updateUi(
+            RatesUiState.Ready -> updateUi(
                 showProgressBar = false,
                 showSettingsButton = true
             )
-            RatesViewModelState.NotLoaded -> updateUi(
+            RatesUiState.NotLoaded -> updateUi(
                 showProgressBar = false,
                 showSettingsButton = false
             )

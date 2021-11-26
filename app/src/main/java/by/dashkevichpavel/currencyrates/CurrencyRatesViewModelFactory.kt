@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import by.dashkevichpavel.currencyrates.db.RepositoryImpl
 import by.dashkevichpavel.currencyrates.features.rates.RatesViewModel
+import by.dashkevichpavel.currencyrates.features.settings.SettingsViewModel
 import by.dashkevichpavel.currencyrates.network.CurrenciesRatesService
 import by.dashkevichpavel.currencyrates.network.CurrenciesRatesServiceImpl
 
@@ -18,6 +19,8 @@ class CurrencyRatesViewModelFactory(
                     RepositoryImpl(applicationContext),
                     CurrenciesRatesServiceImpl()
                 )
+            SettingsViewModel::class.java ->
+                SettingsViewModel(RepositoryImpl(applicationContext),)
             else -> throw IllegalArgumentException("$modelClass is not registered ViewModel")
         } as T
 }

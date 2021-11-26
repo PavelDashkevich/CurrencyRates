@@ -6,4 +6,5 @@
     <dimen name="list_item_rate_height">56dp</dimen>
     <dimen name="list_item_vertical_padding_default">8dp</dimen>
     <dimen name="list_default_margin">12dp</dimen>
+    <dimen name="clickable_control_size_default">56dp</dimen>
 </resources>

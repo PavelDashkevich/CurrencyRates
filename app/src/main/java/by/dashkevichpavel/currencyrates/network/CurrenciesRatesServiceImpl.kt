@@ -21,6 +21,8 @@ class CurrenciesRatesServiceImpl : CurrenciesRatesService {
     override suspend fun getCurrencies(): List<Currency> =
         apiInstance?.getCurrencies()?.mapToCurrencies() ?: emptyList()
 
+    // can be used getRatesFromJson or getRatesFromXml
+    // getRatesFromJson is a way recommended by NBRB
     override suspend fun getRates(onDate: Date): List<Rate> = getRatesFromXml(onDate)
 
     private suspend fun getRatesFromXml(onDate: Date): List<Rate> =

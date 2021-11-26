@@ -10,7 +10,9 @@
     <string name="screen_rates_loading_error">Не удалось получить курсы валют</string>
     <!--    Settings  -->
     <string name="screen_settings_title">@string/common_currencies_settings</string>
+    <string name="screen_settings_saving_complete">Настройки сохранены</string>
 
     <!--  Menus  -->
     <string name="currencies_settings">@string/common_currencies_settings</string>
+    <string name="apply_settings">Применить</string>
 </resources>

@@ -1,6 +1,5 @@
 package by.dashkevichpavel.currencyrates.features.rates
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +7,7 @@ import by.dashkevichpavel.currencyrates.db.Repository
 import by.dashkevichpavel.currencyrates.model.Currency
 import by.dashkevichpavel.currencyrates.model.Rate
 import by.dashkevichpavel.currencyrates.network.CurrenciesRatesService
+import by.dashkevichpavel.currencyrates.utils.OperationResult
 import by.dashkevichpavel.currencyrates.utils.datetime.DateTimeUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,7 +18,7 @@ class RatesViewModel(
     private val repository: Repository,
     private val currenciesRatesService: CurrenciesRatesService
 ) : ViewModel() {
-    val state = MutableLiveData<RatesViewModelState>(RatesViewModelState.Start)
+    val state = MutableLiveData<RatesUiState>(RatesUiState.Start)
     val dateFirst = MutableLiveData(DateTimeUtil.getYesterday())
     val dateLast = MutableLiveData(DateTimeUtil.getToday())
     val rateItems = MutableLiveData<List<RateItem>>(emptyList())
@@ -26,13 +26,13 @@ class RatesViewModel(
     private var currencies: MutableList<Currency> = mutableListOf()
 
     fun loadData() {
-        if (state.value is RatesViewModelState.Start) {
-            state.value = RatesViewModelState.Loading
+        if (state.value is RatesUiState.Start) {
+            state.value = RatesUiState.Loading
             jobLoading = viewModelScope.launch(Dispatchers.IO) {
 
                 when (val currenciesLoadingResult = checkAndLoadCurrencies()) {
                     is OperationResult.Error -> {
-                        state.postValue(RatesViewModelState.LoadingError)
+                        state.postValue(RatesUiState.LoadingError)
                         return@launch
                     }
                     is OperationResult.Success ->
@@ -43,7 +43,7 @@ class RatesViewModel(
 
                 when (val ratesLoadingResult = loadRates()) {
                     is OperationResult.Error -> {
-                        state.postValue(RatesViewModelState.LoadingError)
+                        state.postValue(RatesUiState.LoadingError)
                         return@launch
                     }
                     is OperationResult.Success ->
@@ -52,13 +52,13 @@ class RatesViewModel(
                         }
                 }
 
-                state.postValue(RatesViewModelState.Ready)
+                state.postValue(RatesUiState.Ready)
             }
         }
     }
 
     fun errorHasShown() {
-        state.value = RatesViewModelState.NotLoaded
+        state.value = RatesUiState.NotLoaded
     }
 
     private suspend fun checkAndLoadCurrencies(): OperationResult<MutableList<Currency>> {
@@ -72,18 +72,18 @@ class RatesViewModel(
             }
 
             // delete old currencies
+            // sort by abbreviation
             val dateToday = DateTimeUtil.getToday()
-            currencies = currencies.filter { currency ->
-                currency.dateEnd.time >= dateToday.time
-            }.toMutableList()
+            currencies = currencies
+                .filter { currency -> currency.dateEnd.time >= dateToday.time }
+                .sortedBy { currency -> currency.abbreviation }
+                .toMutableList()
 
-            // set default order - by id
+            // save default order
             // set default visibility
             for (i in currencies.indices) {
-                currencies[i] = currencies[i].copy(
-                    order = currencies[i].id,
-                    show = currencies[i].abbreviation in currenciesVisibleByDefault
-                )
+                currencies[i].order = i
+                currencies[i].show = currencies[i].abbreviation in currenciesVisibleByDefault
             }
 
             repository.insertCurrencies(currencies)
