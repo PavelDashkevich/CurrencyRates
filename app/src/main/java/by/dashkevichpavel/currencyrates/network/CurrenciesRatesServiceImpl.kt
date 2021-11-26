@@ -1,10 +1,11 @@
 package by.dashkevichpavel.currencyrates.network
 
-import by.dashkevichpavel.currencyrates.utils.mappers.mapToCurrencies
-import by.dashkevichpavel.currencyrates.utils.mappers.mapToRates
+import android.util.Log
 import by.dashkevichpavel.currencyrates.model.Currency
 import by.dashkevichpavel.currencyrates.model.Rate
 import by.dashkevichpavel.currencyrates.utils.formatters.FormatUtil
+import by.dashkevichpavel.currencyrates.utils.mappers.mapToCurrencies
+import by.dashkevichpavel.currencyrates.utils.mappers.mapToRates
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -18,20 +19,49 @@ import java.util.*
 class CurrenciesRatesServiceImpl : CurrenciesRatesService {
     private val apiInstance = getServiceInstance()
 
-    override suspend fun getCurrencies(): List<Currency> =
-        apiInstance?.getCurrencies()?.mapToCurrencies() ?: emptyList()
+    override suspend fun getCurrencies(): List<Currency> {
+        var currencies: List<Currency> = emptyList()
+        try {
+            currencies = apiInstance?.getCurrencies()?.mapToCurrencies() ?: emptyList()
+        } catch (e: Exception) {
+            Log.d("CurrencyRatesApp", "Error in currencies loading:")
+            e.printStackTrace()
+        }
+
+        return currencies
+    }
+
 
     // can be used getRatesFromJson or getRatesFromXml
     // getRatesFromJson is a way recommended by NBRB
     override suspend fun getRates(onDate: Date): List<Rate> = getRatesFromXml(onDate)
 
-    private suspend fun getRatesFromXml(onDate: Date): List<Rate> =
-        apiInstance?.getRatesXml(FormatUtil.formatDateAsMonthDayYearString(onDate))?.mapToRates()
-            ?: emptyList()
+    private suspend fun getRatesFromXml(onDate: Date): List<Rate> {
+        var rates: List<Rate> = emptyList()
+        try {
+            rates = apiInstance?.getRatesXml(FormatUtil.formatDateAsMonthDayYearString(onDate))
+                ?.mapToRates() ?: emptyList()
+        } catch (e: Exception) {
+            Log.d("CurrencyRatesApp", "Error in rates (xml) loading:")
+            e.printStackTrace()
+        }
 
-    private suspend fun getRatesFromJson(onDate: Date): List<Rate> =
-        apiInstance?.getRatesJson(FormatUtil.formatDateAsYearMonthDayString(onDate))?.mapToRates()
-            ?: emptyList()
+        return rates
+    }
+
+    private suspend fun getRatesFromJson(onDate: Date): List<Rate> {
+        var rates: List<Rate> = emptyList()
+        try {
+            rates = apiInstance?.getRatesJson(FormatUtil.formatDateAsYearMonthDayString(onDate))
+                ?.mapToRates() ?: emptyList()
+        } catch (e: Exception) {
+            Log.d("CurrencyRatesApp", "Error in rates (xml) loading:")
+            e.printStackTrace()
+        }
+
+        return rates
+    }
+
 
     companion object {
         private var apiService: NbrbApiService? = null
